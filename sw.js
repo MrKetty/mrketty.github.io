@@ -1,0 +1,3 @@
+self.addEventListener('install',function(e){self.skipWaiting()});
+self.addEventListener('activate',function(e){e.waitUntil(self.clients.claim())});
+self.addEventListener('fetch',function(e){var u=new URL(e.request.url);if(u.pathname.includes('/api/')){var i=u.pathname.indexOf('/api/');var p=u.pathname.substring(i)+u.search;e.respondWith(fetch('http://localhost:18888'+p,{method:e.request.method,headers:e.request.headers,body:e.request.body,mode:'cors'}))}})
